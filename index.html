@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <style>
+ table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    th {
+      background-color: #34495e;
+      color: white;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encender un foco si la distancia es mayor a 100cm si es menor encender una alarma</title>
+</head>
+<body>
+    <a href="index.html">visitar primer deber</a><br>
+<a href="segundoDeber.html">visitar segundo deber</a><br>
+    <a href="tercerDeber.html">visitar tercer deber</a><br>
+     <a href="actividad1Thinkercad.html">visitar Acividad 1</a><br>
+     <a href="actividad2Thinkercad.html">visitar Acividad 2</a><br>
+     <a href="actividad3Thinkercad.html">visitar Acividad 3</a>
+
+    <h2 align="center">ARDUINO</h2>
+
+    <h2 align="center">TÍTULO DE LA PRÁCTICA<br>
+"Utilización de pantalla lcd 16x2 con sensor ultrasónico"</h2>
+ <p>Mostrar en la pantalla la distancia en cm que entrega el sensor ultrasónico con parametros como: Si la distancia es mayor de 100cm encender un led. Si la distancia es menor a 100cm encender una alarma o buzzer</p>
+<h2>Introducción</h2>
+<p>En el mundo de la electrónica y la automatización, los sensores ultrasónicos han ganado gran popularidad gracias a su capacidad para medir distancias con alta precisión sin contacto físico. Combinados con una pantalla LCD, estos sensores permiten visualizar de manera clara y directa la distancia medida. Esta práctica tiene como finalidad integrar un sensor ultrasónico HC-SR04 con una pantalla LCD 16x2 para mostrar en tiempo real la distancia a un objeto. Además, se implementarán acciones condicionales: si la distancia es mayor a 100 cm, se encenderá un LED como señal de seguridad; si es menor, se activará una alarma o buzzer como advertencia. Este proyecto permite comprender el uso práctico de sensores, displays y actuadores dentro de un sistema embebido, aplicando conceptos básicos de programación y electrónica digital.</p>
+<h2>OBJETIVOS</h2>
+<p>Objetivo General:<br>
+• Desarrollar un sistema de medición de distancia utilizando un sensor ultrasónico HC-SR04 y mostrar los valores en una pantalla LCD 16x2, incorporando un LED y un buzzer como mecanismos de alerta en función de la distancia detectada.<br>
+Objetivos Específicos:<br>
+• Integrar correctamente el sensor ultrasónico HC-SR04 con un microcontrolador para medir distancias.<br>
+• Visualizar en tiempo real la distancia medida en una pantalla LCD 16x2 mediante comunicación adecuada.<br>
+• Implementar un sistema de alertas utilizando un LED y un buzzer que se activen según rangos de distancia definidos.
+
+<h3>MARCO TEÓRICO</h3>
+<p><strong>Conceptos importantes</strong></p>
+<ul>
+  <li><strong>Arduino:</strong>  Plataforma de hardware libre basada en una placa con un microcontrolador, usada para crear proyectos electrónicos.   </li>
+  <li><strong>Leds:</strong>   Dispositivos emisores de luz que se encienden al recibir corriente eléctrica en una dirección específica.  </li>
+  <li><strong>Resistencias:</strong> Componentes que limitan el paso de corriente eléctrica, protegiendo otros elementos del circuito como los LEDs.  </li>
+  <li><strong>Cables de conexión:</strong>   Conductores utilizados para unir componentes electrónicos y permitir el flujo de corriente en el circuito.  </li>
+<li><strong>Buzzer:</strong>  Dispositivo electrónico que emite un sonido cuando recibe corriente eléctrica, usado para alarmas o alertas sonoras en proyectos electrónicos.  </li>
+<li><strong>Sensor ultrasónico HC-SR04:</strong>   Sensor que mide distancia enviando ondas ultrasónicas y calculando el tiempo que tarda el eco en regresar, permitiendo detectar objetos sin contacto físico. </li>
+<li><strong>Pantalla LCD:</strong>  es un módulo de visualización de texto muy utilizado en proyectos con Arduino. El número "16x2" indica que puede mostrar 16 caracteres por línea en 2 líneas. Este tipo de pantalla es ideal para mostrar datos como temperaturas, distancias, mensajes, menús, entre otros </li>
+</ul>
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhD7UhY_BFtOht349I4FmI1uCpcn2byLO4sHWdu1nunaNSYcoIRpH3GxtWONaPWjKkoOGwgSHmtDN9ekJf9bZ8Js66lQiqtWpUCaPBSmIclMb-DohA7bZ4M_EqtNp5P3A0R8xlI2sN_kNHH/s1600/2015-09-25+16.22.10.jpg" width="800">
+
+<h3>Tabla explicativa de conceptos en relación al código</h3>
+
+      <table>
+        <tr><th>Elemento</th><th>	Cantidad</th><th>	Función</th></tr>
+        <tr><td>Sensor ultrasónico HC-SR04</td><td>1</td><td>Mide la distancia entre el sensor y un objeto mediante ondas ultrasónicas.</td></tr>
+        <tr><td>Pantalla LCD 16x2</td><td>1</td><td>Muestra la distancia medida en centímetros en tiempo real.</td></tr>
+      <tr><td>Microcontrolador (ej. Arduino UNO)</td><td>1</td><td>Procesa la información del sensor y controla la pantalla, LED y buzzer.</td></tr>
+        <tr><td>LED</td><td>1</td><td>Indica que la distancia medida es mayor a 100 cm.</td></tr>
+          <tr><td>Buzzer</td><td>1</td><td>	Emite un sonido de alerta cuando la distancia es menor a 100 cm.</td></tr>
+            <tr><td>Resistencia</td><td>1</td><td>MLimita la corriente para proteger el LED y el buzzer.</td></tr>
+              <tr><td>Cables Jumper/td><td>10</td><td>Permiten realizar las conexiones entre los componentes y el microcontrolador.</td></tr>
+<tr><td>Protoboard</td><td>1</td><td>Facilita la conexión temporal de todos los componentes.</td></tr>
+    </table>
+
+<div class="materiales">
+        <h2>🔧 MATERIALES Y EQUIPO - Práctica de Arduino</h2>
+        <ul>
+ <li>1 Placa Arduino UNO</li>
+<li>1 Sensor ultrasónico HC-SR04</li>
+<li>1 LED (foco indicador)</li>
+<li>1 Resistencia de 220 ohm para el LED</li>
+<li>1 Buzzer activo</li>
+<li>1 Protoboard (placa de pruebas)</li>
+<li>Cables de conexión tipo macho-macho</li>
+<li>Cable USB para conectar Arduino al computador</li>
+<li>Computador con plataforma Tinkercad o Arduino IDE</li>
+<li>Pantalla LCD 16x2</li>
+
+</ul>
+    </div>
+  <h3>PROCEDIMIENTO</h3>
+ <h1>Código usado en la práctica </h1>
+<p>
+    <table border="1">
+// Incluir la librería para controlar la pantalla LCD<br>
+#include <LiquidCrystal.h><br>
+<br>
+// Crear el objeto LCD con los pines conectados: RS, E, D4, D5, D6, D7<br>
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);<br>
+<br>
+// Variable para guardar el tiempo de ida y vuelta del pulso ultrasónico<br>
+long tiempo;<br>
+<br>
+// Variable tipo flotante para almacenar la distancia medida<br>
+float distancia;<br>
+<br>
+// Definimos los pines para el LED y el buzzer<br>
+const int pinLed = 10;     // LED conectado al pin digital 10<br>
+const int pinBuzzer = 11;  // Buzzer conectado al pin digital 11<br>
+<br>
+void setup() {<br>
+  // Inicializar la pantalla LCD con 16 columnas y 2 filas<br>
+  lcd.begin(16, 2);<br>
+<br>
+  // Mostrar el texto estático en la primera línea<br>
+  lcd.print("Distancia:");<br>
+<br>
+  // Configurar los pines del LED y buzzer como salida<br>
+  pinMode(pinLed, OUTPUT);<br>
+  pinMode(pinBuzzer, OUTPUT);<br>
+}<br>
+<br>
+void loop() {<br>
+  // Obtener la distancia medida por el sensor ultrasónico<br>
+  distancia = obtenerDistancia();<br>
+<br>
+  // Convertir la distancia a un String con 2 decimales<br>
+  String distanciaStr = String(distancia, 2);  // Por ejemplo: "56.78"<br>
+<br>
+  // Crear un ancho fijo para el string (rellenado con espacios si es necesario)<br>
+  while (distanciaStr.length() < 6) {<br>
+    distanciaStr = " " + distanciaStr;<br>
+  }<br>
+<br>
+  // Concatenar todo en un solo String: "Valor: XX.XX cm"<br>
+  String lineaLCD = "Valor: " + distanciaStr + "cm";<br>
+<br>
+  // Mostrar el resultado en la segunda línea<br>
+  lcd.setCursor(0, 1);<br>
+  lcd.print(lineaLCD);<br>
+<br>
+  // Lógica para encender LED o buzzer según la distancia<br>
+  if (distancia > 100.0) {<br>
+    digitalWrite(pinLed, HIGH);      // Encender LED<br>
+    digitalWrite(pinBuzzer, LOW);    // Apagar buzzer<br>
+  } else {<br>
+    digitalWrite(pinLed, LOW);       // Apagar LED<br>
+    digitalWrite(pinBuzzer, HIGH);   // Encender buzzer<br>
+  }<br>
+<br>
+  delay(500);  // Esperar medio segundo antes de la siguiente lectura<br>
+}<br>
+<br>
+// Función para medir la distancia usando un solo pin ultrasónico<br>
+float obtenerDistancia() {<br>
+  pinMode(8, OUTPUT);          // Configurar el pin como salida para enviar pulso<br>
+  digitalWrite(8, LOW);        // Asegurarse que el pin esté en bajo<br>
+  delayMicroseconds(2);        // Pequeña pausa<br>
+<br>
+  digitalWrite(8, HIGH);       // Enviar pulso de 10 microsegundos<br>
+  delayMicroseconds(10);<br>
+  digitalWrite(8, LOW);        // Terminar el pulso<br>
+<br>
+  pinMode(8, INPUT);           // Cambiar el pin a entrada para recibir el eco<br>
+  tiempo = pulseIn(8, HIGH);   // Medir el tiempo que tarda el eco en volver<br>
+<br>
+  return tiempo / 29.0 / 2.0;  // Calcular la distancia en cm (fórmula estándar)<br>
+}<br>
+
+</table>
+
+</p>
+<h3>ANÁLISIS Y DISCUSIÓN</h3>
+  <h1>Preguntas y Respuestas - Práctica: LCD 16x2 con Sensor Ultrasónico</h1>
+
+    <div class="pregunta">
+        <h3>1. ¿Qué es una pantalla LCD 16x2?</h3>
+        <div class="respuesta">
+            Es un dispositivo de visualización que permite mostrar hasta 32 caracteres (16 por línea en 2 líneas). Es ampliamente utilizada con Arduino para mostrar datos como textos y valores de sensores.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>2. ¿Qué función cumple el sensor ultrasónico HC-SR04?</h3>
+        <div class="respuesta">
+            Mide la distancia a un objeto utilizando ondas ultrasónicas, enviando un pulso y midiendo el tiempo que tarda en regresar.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>3. ¿Qué microcontrolador se utiliza en la práctica?</h3>
+        <div class="respuesta">
+            Se utiliza un Arduino UNO, el cual controla el sensor, la pantalla LCD, el LED y el buzzer.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>4. ¿Qué sucede si la distancia medida es mayor a 100 cm?</h3>
+        <div class="respuesta">
+            Se enciende un LED indicando que la distancia es segura o que no hay objeto cercano.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>5. ¿Qué ocurre si la distancia es menor a 100 cm?</h3>
+        <div class="respuesta">
+            Se activa un buzzer o alarma como advertencia de que un objeto está demasiado cerca.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>6. ¿Qué librería se utiliza para controlar la pantalla LCD?</h3>
+        <div class="respuesta">
+            Se usa la librería <code>LiquidCrystal</code> en caso de conexión directa, o <code>LiquidCrystal_I2C</code> si se usa un módulo I2C.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>7. ¿Cuál es la unidad de medida utilizada para la distancia?</h3>
+        <div class="respuesta">
+            La distancia medida por el sensor ultrasónico se muestra en centímetros (cm).
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>8. ¿Para qué sirve el potenciómetro en la conexión de la pantalla LCD?</h3>
+        <div class="respuesta">
+            Permite ajustar el contraste de la pantalla LCD para que los caracteres sean visibles correctamente.
+        </div>
+    </div>
+
+    <div class="seccion">
+        <h2>📝 Conclusiones de la Práctica</h2>
+     <div class="conclusion">
+        <strong>1.</strong> La integración entre sensores, pantallas y actuadores permite desarrollar sistemas interactivos y funcionales que responden a condiciones del entorno en tiempo real.
+    </div>
+
+    <div class="conclusion">
+        <strong>2.</strong> El uso de la pantalla LCD 16x2 facilita la visualización clara de datos medidos, mejorando la comunicación entre el sistema y el usuario.
+    </div>
+
+    <div class="conclusion">
+        <strong>3.</strong> Aplicar condiciones como activar un LED o un buzzer según la distancia detectada refuerza el aprendizaje de estructuras condicionales en programación.
+    </div>
+
+    <div class="conclusion">
+        <strong>4.</strong> Esta práctica fortalece las habilidades en electrónica básica, lógica de control y programación, permitiendo construir proyectos más complejos en el futuro.
+    </div>
+    </div>
+<h3>ANEXOS</h3>
+    <h2><strong> Capturas de pantalla del simulador</strong> </h2>
+    <h3>Comprobación de encendido de buzzer y led en conjunto con pantalla LCD</h3>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/nzxb8YZt/33343443.png"width="600">
+        <figcaption>Figura 1: distancia menor a 100cm</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/NFw0zrCy/enceled.png"width="600">
+        <figcaption>Figura 2: distancia mayor a 100cm</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/8kydxpBy/4-4.png"width="600">
+        <figcaption>Figura 3: Práctica y codigo usado</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/G3S7GJNh/3212.png"width="600">
+        <figcaption>Figura 4: Prueba de distancias encendido de alarma</figcaption>
+        </figure>
+</div>
+    <h2><strong> Esquemas de conexión en Tinkercad</strong><a href="https://www.tinkercad.com/things/ftgGiT4E26Z-actividad-4/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">Dar click aquí</a> </h2>
+  <h3>Esquemático de conexiones de la práctica</h3>
+    <img src="https://i.postimg.cc/1Rky3PJB/esquema4ac.png"width="1000">
+
+
+    <h2>Simulación de Thinkercad</h2>
+  
+    <iframe width="725" height="453" src="https://www.tinkercad.com/embed/ftgGiT4E26Z?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</body>
+</html>
